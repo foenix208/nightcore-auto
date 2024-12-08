@@ -56,7 +56,7 @@ def ft_wallpaper(file = "./"):
 
     for link in y:
         x = link_wallpaper("https://wallpaperscraft.com/"+link["href"])
-        
+
         source = wallpaper_source(x)
         tag = wallpaper_tag(x)
         
@@ -64,4 +64,3 @@ def ft_wallpaper(file = "./"):
         
         return file,source,tag 
     
-ft_wallpaper("./img.jpg")
