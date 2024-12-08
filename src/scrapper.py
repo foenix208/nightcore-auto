@@ -28,6 +28,19 @@ def link_download(url, file="./imgs.jpg"):
     with open(file, 'wb') as f:
         f.write(response.content)
 
+def wallpaper_source(url):
+    soup = ft_requests(url)
+    return soup.find("a",{"class":"author__link"})["href"]
+
+def wallpaper_tag(url):
+    tag = []
+    soup = ft_requests(url)
+    soup = soup.find("div",{"class":'wallpaper__tags'})
+    
+    for i in soup.find_all("a"):
+        tag.append(i.text)
+
+    return(tag)
 
 # * FONCTION APPEL 
 def ft_wallpaper(file = "./"):
@@ -43,8 +56,12 @@ def ft_wallpaper(file = "./"):
 
     for link in y:
         x = link_wallpaper("https://wallpaperscraft.com/"+link["href"])
+        
+        source = wallpaper_source(x)
+        tag = wallpaper_tag(x)
+        
         link_download(x,file)
         
-        return 1 
+        return file,source,tag 
     
 ft_wallpaper("./img.jpg")
