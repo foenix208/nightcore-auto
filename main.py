@@ -1,3 +1,3 @@
-from src.scrapper import ft_wallpaper
+from src.wallpaper_scrapper import ft_wallpaper
 
 ft_wallpaper("./resources/img.jpg")
