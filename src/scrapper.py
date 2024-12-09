@@ -42,6 +42,11 @@ def wallpaper_tag(url):
 
     return(tag)
 
+def wallpaper_date(url):
+    soup = ft_requests(url)
+    x =soup.find_all("span",{"class":"wallpaper-table__cell"})
+    return x[len(x)-1].text.split("-")[0]
+
 # * FONCTION APPEL 
 def ft_wallpaper(file = "./"):
     page = 1
@@ -57,6 +62,7 @@ def ft_wallpaper(file = "./"):
     for link in y:
         x = link_wallpaper("https://wallpaperscraft.com/"+link["href"])
 
+        date = wallpaper_date("https://wallpaperscraft.com/"+link["href"])
         source = wallpaper_source(x)
         tag = wallpaper_tag(x)
         
