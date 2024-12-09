@@ -54,19 +54,15 @@ def ft_wallpaper(file = "./"):
     soup = ft_requests(url)
 
     #! moddification nul pour des teste plus fun
-    #* for link in soup.find_all("a",{"class" : "wallpapers__link"})
-    
-    y = soup.find_all("a",{"class" : "wallpapers__link"})
-    y.pop(0)
-
-    for link in y:
+    for link in soup.find_all("a",{"class" : "wallpapers__link"}):
         x = link_wallpaper("https://wallpaperscraft.com/"+link["href"])
 
         date = wallpaper_date("https://wallpaperscraft.com/"+link["href"])
-        source = wallpaper_source(x)
-        tag = wallpaper_tag(x)
-        
-        link_download(x,file)
-        
-        return file,source,tag 
+        if int(date) >= 2020:
+            source = wallpaper_source(x)
+            tag = wallpaper_tag(x)
+            
+            link_download(x,file)
+            
+            return file,source,tag 
     
