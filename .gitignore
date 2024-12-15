@@ -3,6 +3,6 @@ __pycache__/
 *.pyo
 
 *.m4a
-*jpg
+*.jpg
 *.mp4
 *.mp3
